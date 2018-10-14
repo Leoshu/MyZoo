@@ -40,14 +40,20 @@ static int OFFSET = 30;
 
 - (void)requestData:(int)limit andOffset:(int)offset {
     __weak typeof(self) weakSelf = self;
-    [APIClient requestAnimal:limit andOffset:offset withCompleteBlock:^(NSArray<QTResultResult *> *objects) {
-        for (QTResultResult *obj in objects) {
-            Animal *animal = [[Animal alloc] init:obj];
-            ViewItem *item = [[ViewItem alloc] init:animal];
-            [weakSelf.items addObject:item];
-        }
-        [weakSelf.delegate viewItemDidRefesh:weakSelf.items];
-    }];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [APIClient requestAnimal:limit andOffset:offset withCompleteBlock:^(NSArray<QTResultResult *> *objects) {
+            for (QTResultResult *obj in objects) {
+                Animal *animal = [[Animal alloc] init:obj];
+                ViewItem *item = [[ViewItem alloc] init:animal];
+                [weakSelf.items addObject:item];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.delegate viewItemDidRefesh:weakSelf.items];
+            });
+        }];
+    });
+    
+    
 }
 
 @end
