@@ -7,6 +7,7 @@
 //
 
 #import "TableViewCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation TableViewCell
 
@@ -25,6 +26,8 @@
     self.lblName.text = item.name;
     self.lblBehavior.text = item.behavior;
     self.lblLocation.text = item.location;
+    [self.ivPic sd_setImageWithURL:[NSURL URLWithString:item.imgUrl]
+                 placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
 }
 
 @end

@@ -7,5 +7,6 @@ target 'MyZoo' do
 
   # Pods for MyZoo
 	pod 'AFNetworking', '~> 3.0'
+	pod 'SDWebImage', '~> 4.0'
 
 end
