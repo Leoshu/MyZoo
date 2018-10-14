@@ -22,14 +22,14 @@
         NSError *error = NULL;
         QTTopLevel *databean = [QTTopLevel fromData:responseObject error: &error];
         complete(databean.result.results);
-//        for (QTResultResult *result in databean.result.results) {
+        for (QTResultResult *result in databean.result.results) {
 //            NSLog(@"A_Name_Ch = %@", result.aNameCh);
 //            NSLog(@"A_Location = %@", result.aLocation);
 //            NSLog(@"A_Behavior = %@", result.aBehavior ? result.aBehavior : @"nil");
 //            NSLog(@"A_Interpretation = %@", result.aInterpretation);
 //            NSLog(@"A_Pic01_URL = %@", result.aPic01URL);
 //            NSLog(@"*********");
-//        }
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error = %@", error.description);
     }];

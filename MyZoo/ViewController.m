@@ -7,14 +7,17 @@
 //
 
 #import "ViewController.h"
+#import "ViewModel.h"
+#import "TableViewCell.h"
 
 static NSString *CELL = @"cell";
 static float TableHeaderHeight = 300.0;
 
-@interface ViewController () {
-    NSArray *tableData;
+@interface ViewController () <ViewModelCallback> {
+    NSArray<ViewItem *> *tableData;
     UIImageView *imageView;
     UIVisualEffectView *blurEffectView;
+    ViewModel *vm;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -28,11 +31,13 @@ static float TableHeaderHeight = 300.0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    tableData = [NSArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", nil];
-    
-    self.tableView.estimatedRowHeight = 50;
+    tableData = [[NSArray<ViewItem *> alloc] init];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 163;
     self.tableView.contentInset = UIEdgeInsetsMake(TableHeaderHeight - self.view.safeAreaInsets.top, 0, 0, 0);
     
+    vm = [[ViewModel alloc] init];
+    vm.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,13 +79,13 @@ static float TableHeaderHeight = 300.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL];
+    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL];
+        cell = [[TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL];
     }
     
-    cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
+    cell.item = [tableData objectAtIndex:indexPath.row];
     
     return cell;
 }
@@ -88,6 +93,21 @@ static float TableHeaderHeight = 300.0;
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self updateHeader:scrollView.contentOffset];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    CGFloat currentOffset = scrollView.contentOffset.y;
+    CGFloat maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
+    
+    if (maximumOffset - currentOffset <= 10.0) {
+        [vm requestMore];
+    }
+}
+
+#pragma mark - ViewModelCallback
+-(void)viewItemDidRefesh:(NSArray<ViewItem *> *)items {
+    tableData = items;
+    [self.tableView reloadData];
 }
 
 @end

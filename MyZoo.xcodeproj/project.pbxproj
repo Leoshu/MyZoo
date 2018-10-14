@@ -16,6 +16,9 @@
 		6D92B1A82173727C00912CAF /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D92B1A72173727C00912CAF /* APIClient.m */; };
 		6D92B1AB217373A400912CAF /* QTTopLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D92B1AA217373A400912CAF /* QTTopLevel.m */; };
 		6D92B1AE21737F6A00912CAF /* ViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D92B1AD21737F6A00912CAF /* ViewModel.m */; };
+		6D92B1B12173800300912CAF /* Animal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D92B1B02173800300912CAF /* Animal.m */; };
+		6D92B1B42173816C00912CAF /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D92B1B32173816C00912CAF /* TableViewCell.m */; };
+		6D92B1B72173853700912CAF /* ViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D92B1B62173853700912CAF /* ViewItem.m */; };
 		74877B45BEFA85700EB05B77 /* libPods-MyZoo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE63A18E7FF056384DBDA0F3 /* libPods-MyZoo.a */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +41,12 @@
 		6D92B1AA217373A400912CAF /* QTTopLevel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QTTopLevel.m; sourceTree = "<group>"; };
 		6D92B1AC21737F6A00912CAF /* ViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewModel.h; sourceTree = "<group>"; };
 		6D92B1AD21737F6A00912CAF /* ViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewModel.m; sourceTree = "<group>"; };
+		6D92B1AF2173800300912CAF /* Animal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Animal.h; sourceTree = "<group>"; };
+		6D92B1B02173800300912CAF /* Animal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Animal.m; sourceTree = "<group>"; };
+		6D92B1B22173816C00912CAF /* TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
+		6D92B1B32173816C00912CAF /* TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		6D92B1B52173853700912CAF /* ViewItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewItem.h; sourceTree = "<group>"; };
+		6D92B1B62173853700912CAF /* ViewItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewItem.m; sourceTree = "<group>"; };
 		CE63A18E7FF056384DBDA0F3 /* libPods-MyZoo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyZoo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -87,8 +96,12 @@
 				6D18570821731CBF0061B824 /* AppDelegate.m */,
 				6D1857232173282E0061B824 /* ViewController.h */,
 				6D1857242173282E0061B824 /* ViewController.m */,
+				6D92B1B22173816C00912CAF /* TableViewCell.h */,
+				6D92B1B32173816C00912CAF /* TableViewCell.m */,
 				6D92B1AC21737F6A00912CAF /* ViewModel.h */,
 				6D92B1AD21737F6A00912CAF /* ViewModel.m */,
+				6D92B1B52173853700912CAF /* ViewItem.h */,
+				6D92B1B62173853700912CAF /* ViewItem.m */,
 				6D18570D21731CBF0061B824 /* Main.storyboard */,
 				6D92B1A1217371A500912CAF /* Domain */,
 				6D18571021731CBF0061B824 /* Assets.xcassets */,
@@ -122,6 +135,8 @@
 		6D92B1A3217371D400912CAF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6D92B1AF2173800300912CAF /* Animal.h */,
+				6D92B1B02173800300912CAF /* Animal.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -246,8 +261,11 @@
 				6D18571721731CBF0061B824 /* main.m in Sources */,
 				6D18570921731CBF0061B824 /* AppDelegate.m in Sources */,
 				6D1857252173282E0061B824 /* ViewController.m in Sources */,
+				6D92B1B12173800300912CAF /* Animal.m in Sources */,
+				6D92B1B42173816C00912CAF /* TableViewCell.m in Sources */,
 				6D92B1A82173727C00912CAF /* APIClient.m in Sources */,
 				6D92B1AB217373A400912CAF /* QTTopLevel.m in Sources */,
+				6D92B1B72173853700912CAF /* ViewItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

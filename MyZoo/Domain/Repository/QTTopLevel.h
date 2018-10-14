@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface QTResultResult : NSObject
-@property (nonatomic, copy, nullable) NSString *aBehavior;
+@property (nonatomic, copy) NSString *aBehavior;
 @property (nonatomic, copy) NSString *aDistribution;
 @property (nonatomic, copy) NSString *aVoice03URL;
 @property (nonatomic, copy) NSString *aPOIGroup;
