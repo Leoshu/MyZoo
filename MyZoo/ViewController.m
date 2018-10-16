@@ -51,6 +51,7 @@ static float TableHeaderHeight = 300.0;
     float height = MIN(MAX(y, 60), 400);
 //    NSLog(@"height = %f", height);
     self.TopContaint.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, height);
+    self.ContaintTwoLabel.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, height);
     
     float y2 = -(contentOffset.y + self.view.safeAreaInsets.top + 60);
 //    NSLog(@"y2 = %f", y2);
