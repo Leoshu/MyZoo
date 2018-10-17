@@ -24,6 +24,7 @@ static float TableHeaderHeight = 300.0;
 @property (weak, nonatomic) IBOutlet UIView *ContaintTwoLabel;
 @property (weak, nonatomic) IBOutlet UIView *ContaintOneLabel;
 @property (weak, nonatomic) IBOutlet UIView *TopContaint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topHeight;
 
 @end
 
@@ -47,23 +48,18 @@ static float TableHeaderHeight = 300.0;
 
 - (void)updateHeader:(CGPoint)contentOffset {
 //    NSLog(@"contentOffset.y = %f", contentOffset.y);
-    float y = TableHeaderHeight - (contentOffset.y + TableHeaderHeight + self.view.safeAreaInsets.top);
+    float y = TableHeaderHeight - (contentOffset.y + TableHeaderHeight);
     float height = MIN(MAX(y, 60), 400);
 //    NSLog(@"height = %f", height);
-    self.TopContaint.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, height);
-    self.ContaintTwoLabel.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, height);
+    self.topHeight.constant = height;
     
-    float y2 = -(contentOffset.y + self.view.safeAreaInsets.top + 60);
-//    NSLog(@"y2 = %f", y2);
-    y2 = MAX(y2, 0);
-    self.ContaintOneLabel.frame = CGRectMake(0, y2, UIScreen.mainScreen.bounds.size.width, 60);
     
     if (height > TableHeaderHeight) {
         self.ContaintTwoLabel.alpha = 1.0f;
         self.ContaintOneLabel.alpha = 0.0f;
-    } else if (contentOffset.y > -(TableHeaderHeight + self.view.safeAreaInsets.top) && contentOffset.y <= -(60+ self.view.safeAreaInsets.top)) {
-        CGFloat rate = (contentOffset.y + TableHeaderHeight + self.view.safeAreaInsets.top) / (TableHeaderHeight - 60);
-//        NSLog(@"rate = %f", rate);
+    } else if (contentOffset.y > -TableHeaderHeight && contentOffset.y <= -60) {
+        CGFloat rate = (contentOffset.y + TableHeaderHeight) / (TableHeaderHeight - 60);
+        NSLog(@"rate = %f", rate);
         self.ContaintTwoLabel.alpha = 1 - rate;
         self.ContaintOneLabel.alpha = rate;
     }
